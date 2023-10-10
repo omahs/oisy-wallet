@@ -230,5 +230,14 @@ fn get_stats() -> CustomResult<String> {
     logic::get_stats()
 }
 
+/// Remove some of the logs that contain "marked airdrop as transferred"
+/// TODO should we return an error if the pattern does not exist
+#[update(guard = "caller_is_admin")]
+fn remove_logs(pattern_match: Vec<String>) {
+    for pattern in pattern_match {
+        logic::remove_logs(pattern);
+    }
+}
+
 // automatically generates the candid file
 export_candid!();

@@ -639,3 +639,10 @@ pub fn get_logs(index: u64) -> CustomResult<Vec<(usize, String)>> {
 
     read_state(|state| Ok(state.logs.get_logs(index)))
 }
+
+/// remove logs containing a specific string
+pub(crate) fn remove_logs(specific_string: String) {
+    mutate_state(|state| {
+        state.logs.remove_logs(specific_string);
+    });
+}

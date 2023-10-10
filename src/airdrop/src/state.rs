@@ -107,6 +107,11 @@ impl Logs {
             .map(|(i, log)| (i, log.clone()))
             .collect()
     }
+
+    /// remove in place logs that contain a specific string
+    pub fn remove_logs(&mut self, specific_string: String) {
+        self.logs.retain(|log| !log.contains(&specific_string));
+    }
 }
 
 #[derive(Serialize, Deserialize, Clone, Hash, PartialEq, Eq, CandidType, Debug)]
